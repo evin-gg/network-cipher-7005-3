@@ -6,6 +6,7 @@ mod networking_util;
 use networking_util::{
     format_send, check_valid_ip, client_response_handler, client_arg_validation, client_connect
 };
+use std::time::Duration;
 use::std::{process, env};
 
 
@@ -53,6 +54,7 @@ fn main() {
         }
     };
 
+    std::thread::sleep(Duration::from_secs(3));
     // Receive the response
     client_response_handler(&socket);
 }
