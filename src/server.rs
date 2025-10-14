@@ -10,12 +10,12 @@ use std::sync::atomic::AtomicBool;
 use std::sync::atomic::Ordering;
 
 // network sockets
-use nix::sys::socket::{MsgFlags, recv, send};
+use nix::sys::socket::{MsgFlags, send};
 use socket2::Socket;
 
 // poll
-use tokio::net::{TcpListener, TcpStream};
-use tokio::io::{AsyncReadExt, AsyncWriteExt};
+use tokio::net::{TcpListener};
+use tokio::io::{AsyncReadExt};
 
 // other util
 use cipher::split_payload;
