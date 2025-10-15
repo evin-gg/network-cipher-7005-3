@@ -6,13 +6,9 @@ mod networking_util;
 use networking_util::{
     format_send, check_valid_ip, client_response_handler, client_arg_validation, client_connect
 };
+
 use std::time::Duration;
 use::std::{process, env};
-
-
-
-// use socket2::{Socket, Domain, Type, SockAddr};
-// use std::net::{SocketAddrV4};
 
 fn main() {
 
@@ -45,16 +41,21 @@ fn main() {
         }
     };
 
-    // Send the formatted data
-    match format_send(args, &socket) {
-        Ok(()) => {},
-        Err(e) => {
-            eprintln!("[CLIENT] Error Sending Data {}", e);
-            process::exit(1);
-        }
-    };
+    for _n in 0..3{
+        // Send the formatted data
+        match format_send(args.clone(), &socket) {
+            Ok(()) => {},
+            Err(e) => {
+                eprintln!("[CLIENT] Error Sending Data {}", e);
+                process::exit(1);
+            }
+        };
 
-    std::thread::sleep(Duration::from_secs(3));
-    // Receive the response
-    client_response_handler(&socket);
+        
+        println!("SLEEPING FOR 2 SECONDS");
+        std::thread::sleep(Duration::from_secs(2));
+
+        // Receive the response
+        client_response_handler(&socket);
+    }
 }

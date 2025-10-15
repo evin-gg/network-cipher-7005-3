@@ -93,7 +93,7 @@ async fn main() {
                 let _n = match clientfd.read(&mut buf).await {
                     Ok(0) => return,
                     Ok(_n) => {
-                        println!("[SERVER] Client connected"); 
+                        println!("[SERVER] Client ID: {} connected", clientfd.as_raw_fd()); 
                         println!("[SERVER] Payload: {}", String::from_utf8_lossy(&buf[.._n]));
                     },
                     Err(e) => {
