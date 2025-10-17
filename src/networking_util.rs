@@ -10,8 +10,6 @@ use nix::sys::socket::{
 };
 use socket2::{Socket, Domain, Type, SockAddr};
 
-
-
 // other util
 use get_if_addrs::get_if_addrs;
 
@@ -102,10 +100,6 @@ pub fn server_arg_validation(args: &Vec<String>) -> Result<(), String> {
 }
 
 pub fn setup_server(args: &Vec<String>) -> Result<Socket, String> {
-
-    
-
-
     let local_ip: IpAddr = args[1].parse().unwrap();
 
     let port: u16 = match args[2].parse() {

@@ -7,7 +7,7 @@ use networking_util::{
     format_send, check_valid_ip, client_response_handler, client_arg_validation, client_connect
 };
 
-use std::time::Duration;
+// use std::time::Duration;
 use::std::{process, env};
 
 fn main() {
@@ -41,7 +41,7 @@ fn main() {
         }
     };
 
-    for _n in 0..3{
+    // for _n in 0..3{
         // Send the formatted data
         match format_send(args.clone(), &socket) {
             Ok(()) => {},
@@ -52,10 +52,10 @@ fn main() {
         };
 
         
-        println!("SLEEPING FOR 2 SECONDS");
-        std::thread::sleep(Duration::from_secs(2));
+        // println!("SLEEPING FOR 2 SECONDS");
+        // std::thread::sleep(Duration::from_secs(2));
 
         // Receive the response
         client_response_handler(&socket);
-    }
+    // }
 }

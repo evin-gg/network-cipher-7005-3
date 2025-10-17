@@ -8,7 +8,7 @@ build:
 	cargo build
 
 server:
-	$(SERVER) 192.168.0.112 50000
+	$(SERVER) 192.168.1.79 50000
 
 serverip6:
 	$(SERVER) 2001:569:5213:4c00:876a:4be7:70ce:4c5 50000
@@ -53,6 +53,6 @@ t11:
 	$(SERVER) 192.168.1.79 50000
 
 s1:
-	$(CLIENT) "DEF" "may" 192.168.0.112 50000 
+	$(CLIENT) "DEF" "may" 192.168.1.79 50000 
 s2:
-	$(CLIENT) "XYZ" "may" 192.168.0.112 50000
+	$(CLIENT) "XYZ" "may" 192.168.1.79 50000

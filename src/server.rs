@@ -3,6 +3,7 @@ mod networking_util;
 
 // standard
 use ::std::os::fd::AsRawFd;
+use std::time::Duration;
 use ::std::{env, process};
 use ctrlc;
 use std::sync::Arc;
@@ -103,39 +104,12 @@ async fn main() {
                 };
 
                 let response = split_payload(&buf);
+                let n: u64 = rand::random_range(0..4);
+                std::thread::sleep(Duration::from_secs(n));
                 send(clientfd.as_raw_fd(), response.as_bytes(), MsgFlags::empty()).expect("[SERVER] Error sending response");
             }
         });
-
-
-        // accept
-        // let (clientfd, _clientaddr) = match socket.accept() {
-        //     Ok((fd, addr)) => {
-        //         println!("[SERVER] Accepted connection");
-        //         (fd, addr)
-        //     },
-        //     Err(e) => {
-        //         eprintln!("[SERVER] Accept Error {}", e);
-        //         return;
-        //     }
-        // };
-
-        // // read in
-        // let mut buf = [0u8; 1024];
-        // let read_bytes = match recv(clientfd.as_raw_fd(), &mut buf, MsgFlags::empty()){
-        //     Ok(n) => {println!("[SERVER] Received {} bytes", n); n},
-        //     Err(e) => {println!("[SERVER] Error: {}", e); 0},
-        // };
-        // println!("[SERVER] Payload: {}", String::from_utf8_lossy(&buf[..read_bytes]));
-
-        // // process
-        // let response = split_payload(&buf);
-
-        // //send
-        // send(clientfd.as_raw_fd(), response.as_bytes(), MsgFlags::empty())
-        //     .expect("[SERVER] Error sending response");
     }
 
-    // drop(socket);
     println!("[SERVER] Socket closed. Exiting");
 }
